@@ -12,7 +12,13 @@ function touchRefs() {
 }
 
 function callback(newValue: any, oldValue: any) {
-  console.log(newValue, oldValue);
+  const newValueTd = document.createElement("td");
+  newValueTd.textContent = newValue;
+  const oldValueTd = document.createElement("td");
+  oldValueTd.textContent = oldValue;
+  const tr = document.createElement("tr");
+  tr.append(newValueTd, oldValueTd);
+  document.querySelector("tbody")?.append(tr);
 }
 
 // The first watcher's getter function returns a primitive, the others return a non-primitive, which somehow decides if the watcher gets triggered or not.
@@ -42,4 +48,14 @@ watch(() => {
 setInterval(touchRefs, 1000);
 </script>
 
-<template></template>
+<template>
+  <table>
+    <thead>
+      <tr>
+        <th>New</th>
+        <th>Old</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</template>
