@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 const objectRef = ref({ foo: "bar" });
 const stringRef = ref("hello");
@@ -45,7 +45,7 @@ watch(() => {
   return new Number(4);
 }, callback); // triggered by `touchRefs()`, which is even more confusing 🤯
 
-setInterval(touchRefs, 1000);
+onMounted(touchRefs);
 </script>
 
 <template>
